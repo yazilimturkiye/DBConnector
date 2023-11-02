@@ -1,0 +1,10 @@
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\bin\Debug\DBConnector.exe.config
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\bin\Debug\DBConnector.exe
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\bin\Debug\DBConnector.pdb
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\obj\Debug\DBConnector.csproj.AssemblyReference.cache
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\obj\Debug\DBConnector.DBConnector.resources
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\obj\Debug\DBConnector.Properties.Resources.resources
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\obj\Debug\DBConnector.csproj.GenerateResource.cache
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\obj\Debug\DBConnector.csproj.CoreCompileInputs.cache
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\obj\Debug\DBConnector.exe
+C:\Users\yazilimturk\Documents\GitHub\DBConnector\obj\Debug\DBConnector.pdb
