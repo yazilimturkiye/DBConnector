@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label_arkaplan = new Label();
             label_baslik = new Label();
             label_altbaslik = new Label();
             label_versiyon = new Label();
             progressBar_durum = new ProgressBar();
             button_hakkinda = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
             groupBox_veritabanituru = new GroupBox();
-            groupBox_veritabanibaglanti = new GroupBox();
-            button_baglantibaslat = new Button();
-            label1 = new Label();
             comboBox1_veritabanituru = new ComboBox();
-            label2 = new Label();
-            textBox_veritabaniadi = new TextBox();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            textBox_kullaniciadi = new TextBox();
-            textBox_sunucu = new TextBox();
-            textBox_port = new TextBox();
-            textBox_sifre = new TextBox();
+            label1 = new Label();
+            groupBox_veritabanibaglanti = new GroupBox();
             checkBox_sifregoster = new CheckBox();
+            textBox_sifre = new TextBox();
+            textBox_port = new TextBox();
+            textBox_sunucu = new TextBox();
+            textBox_kullaniciadi = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            textBox_veritabaniadi = new TextBox();
+            label2 = new Label();
+            button_baglantibaslat = new Button();
+            timer_sayac = new System.Windows.Forms.Timer(components);
+            linkLabel1 = new LinkLabel();
             groupBox_veritabanituru.SuspendLayout();
             groupBox_veritabanibaglanti.SuspendLayout();
             SuspendLayout();
@@ -59,7 +59,7 @@
             // label_arkaplan
             // 
             label_arkaplan.BackColor = Color.White;
-            label_arkaplan.Location = new Point(0, 2);
+            label_arkaplan.Location = new Point(0, 1);
             label_arkaplan.Name = "label_arkaplan";
             label_arkaplan.Size = new Size(485, 137);
             label_arkaplan.TabIndex = 0;
@@ -99,7 +99,7 @@
             // 
             // progressBar_durum
             // 
-            progressBar_durum.Location = new Point(0, 139);
+            progressBar_durum.Location = new Point(0, 138);
             progressBar_durum.Name = "progressBar_durum";
             progressBar_durum.Size = new Size(484, 8);
             progressBar_durum.TabIndex = 4;
@@ -112,30 +112,6 @@
             button_hakkinda.TabIndex = 5;
             button_hakkinda.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            button1.Location = new Point(75, 74);
-            button1.Name = "button1";
-            button1.Size = new Size(50, 50);
-            button1.TabIndex = 6;
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(131, 74);
-            button2.Name = "button2";
-            button2.Size = new Size(50, 50);
-            button2.TabIndex = 7;
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(187, 74);
-            button3.Name = "button3";
-            button3.Size = new Size(50, 50);
-            button3.TabIndex = 8;
-            button3.UseVisualStyleBackColor = true;
-            // 
             // groupBox_veritabanituru
             // 
             groupBox_veritabanituru.Controls.Add(comboBox1_veritabanituru);
@@ -145,6 +121,26 @@
             groupBox_veritabanituru.Size = new Size(460, 89);
             groupBox_veritabanituru.TabIndex = 9;
             groupBox_veritabanituru.TabStop = false;
+            // 
+            // comboBox1_veritabanituru
+            // 
+            comboBox1_veritabanituru.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1_veritabanituru.FormattingEnabled = true;
+            comboBox1_veritabanituru.Location = new Point(141, 34);
+            comboBox1_veritabanituru.Name = "comboBox1_veritabanituru";
+            comboBox1_veritabanituru.Size = new Size(303, 29);
+            comboBox1_veritabanituru.TabIndex = 12;
+            comboBox1_veritabanituru.SelectedIndexChanged += comboBox1_veritabanituru_SelectedIndexChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.Control;
+            label1.Location = new Point(7, 37);
+            label1.Name = "label1";
+            label1.Size = new Size(129, 21);
+            label1.TabIndex = 11;
+            label1.Text = "Veritabanı Türü";
             // 
             // groupBox_veritabanibaglanti
             // 
@@ -159,119 +155,12 @@
             groupBox_veritabanibaglanti.Controls.Add(textBox_veritabaniadi);
             groupBox_veritabanibaglanti.Controls.Add(label2);
             groupBox_veritabanibaglanti.Controls.Add(button_baglantibaslat);
+            groupBox_veritabanibaglanti.Enabled = false;
             groupBox_veritabanibaglanti.Location = new Point(12, 236);
             groupBox_veritabanibaglanti.Name = "groupBox_veritabanibaglanti";
             groupBox_veritabanibaglanti.Size = new Size(460, 345);
             groupBox_veritabanibaglanti.TabIndex = 10;
             groupBox_veritabanibaglanti.TabStop = false;
-            // 
-            // button_baglantibaslat
-            // 
-            button_baglantibaslat.Location = new Point(16, 269);
-            button_baglantibaslat.Name = "button_baglantibaslat";
-            button_baglantibaslat.Size = new Size(428, 60);
-            button_baglantibaslat.TabIndex = 11;
-            button_baglantibaslat.Text = "Bağlantı Kur";
-            button_baglantibaslat.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = SystemColors.Control;
-            label1.Location = new Point(7, 37);
-            label1.Name = "label1";
-            label1.Size = new Size(129, 21);
-            label1.TabIndex = 11;
-            label1.Text = "Veritabanı Türü";
-            // 
-            // comboBox1_veritabanituru
-            // 
-            comboBox1_veritabanituru.FormattingEnabled = true;
-            comboBox1_veritabanituru.Location = new Point(141, 34);
-            comboBox1_veritabanituru.Name = "comboBox1_veritabanituru";
-            comboBox1_veritabanituru.Size = new Size(303, 29);
-            comboBox1_veritabanituru.TabIndex = 12;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = SystemColors.Control;
-            label2.Location = new Point(12, 31);
-            label2.Name = "label2";
-            label2.Size = new Size(123, 21);
-            label2.TabIndex = 13;
-            label2.Text = "Veritabanı Adı";
-            // 
-            // textBox_veritabaniadi
-            // 
-            textBox_veritabaniadi.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_veritabaniadi.Location = new Point(141, 31);
-            textBox_veritabaniadi.Name = "textBox_veritabaniadi";
-            textBox_veritabaniadi.Size = new Size(303, 31);
-            textBox_veritabaniadi.TabIndex = 14;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.BackColor = SystemColors.Control;
-            label3.Location = new Point(32, 83);
-            label3.Name = "label3";
-            label3.Size = new Size(103, 21);
-            label3.TabIndex = 15;
-            label3.Text = "Kullanıcı Adı";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = SystemColors.Control;
-            label4.Location = new Point(21, 135);
-            label4.Name = "label4";
-            label4.Size = new Size(114, 21);
-            label4.TabIndex = 16;
-            label4.Text = "Sunucu / Port";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = SystemColors.Control;
-            label5.Location = new Point(94, 190);
-            label5.Name = "label5";
-            label5.Size = new Size(41, 21);
-            label5.TabIndex = 17;
-            label5.Text = "Şifre";
-            // 
-            // textBox_kullaniciadi
-            // 
-            textBox_kullaniciadi.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_kullaniciadi.Location = new Point(141, 83);
-            textBox_kullaniciadi.Name = "textBox_kullaniciadi";
-            textBox_kullaniciadi.Size = new Size(303, 31);
-            textBox_kullaniciadi.TabIndex = 18;
-            // 
-            // textBox_sunucu
-            // 
-            textBox_sunucu.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_sunucu.Location = new Point(141, 135);
-            textBox_sunucu.Name = "textBox_sunucu";
-            textBox_sunucu.Size = new Size(216, 31);
-            textBox_sunucu.TabIndex = 19;
-            // 
-            // textBox_port
-            // 
-            textBox_port.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_port.Location = new Point(363, 135);
-            textBox_port.Name = "textBox_port";
-            textBox_port.Size = new Size(81, 31);
-            textBox_port.TabIndex = 20;
-            // 
-            // textBox_sifre
-            // 
-            textBox_sifre.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox_sifre.Location = new Point(141, 190);
-            textBox_sifre.Name = "textBox_sifre";
-            textBox_sifre.PasswordChar = '*';
-            textBox_sifre.Size = new Size(303, 31);
-            textBox_sifre.TabIndex = 21;
             // 
             // checkBox_sifregoster
             // 
@@ -284,16 +173,124 @@
             checkBox_sifregoster.Text = "Şifreyi Göster";
             checkBox_sifregoster.UseVisualStyleBackColor = true;
             // 
+            // textBox_sifre
+            // 
+            textBox_sifre.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_sifre.Location = new Point(141, 190);
+            textBox_sifre.Name = "textBox_sifre";
+            textBox_sifre.PasswordChar = '*';
+            textBox_sifre.Size = new Size(303, 31);
+            textBox_sifre.TabIndex = 21;
+            // 
+            // textBox_port
+            // 
+            textBox_port.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_port.Location = new Point(363, 135);
+            textBox_port.Name = "textBox_port";
+            textBox_port.Size = new Size(81, 31);
+            textBox_port.TabIndex = 20;
+            // 
+            // textBox_sunucu
+            // 
+            textBox_sunucu.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_sunucu.Location = new Point(141, 135);
+            textBox_sunucu.Name = "textBox_sunucu";
+            textBox_sunucu.Size = new Size(216, 31);
+            textBox_sunucu.TabIndex = 19;
+            // 
+            // textBox_kullaniciadi
+            // 
+            textBox_kullaniciadi.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_kullaniciadi.Location = new Point(141, 83);
+            textBox_kullaniciadi.Name = "textBox_kullaniciadi";
+            textBox_kullaniciadi.Size = new Size(303, 31);
+            textBox_kullaniciadi.TabIndex = 18;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = SystemColors.Control;
+            label5.Location = new Point(94, 190);
+            label5.Name = "label5";
+            label5.Size = new Size(41, 21);
+            label5.TabIndex = 17;
+            label5.Text = "Şifre";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = SystemColors.Control;
+            label4.Location = new Point(21, 135);
+            label4.Name = "label4";
+            label4.Size = new Size(114, 21);
+            label4.TabIndex = 16;
+            label4.Text = "Sunucu / Port";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = SystemColors.Control;
+            label3.Location = new Point(32, 83);
+            label3.Name = "label3";
+            label3.Size = new Size(103, 21);
+            label3.TabIndex = 15;
+            label3.Text = "Kullanıcı Adı";
+            // 
+            // textBox_veritabaniadi
+            // 
+            textBox_veritabaniadi.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox_veritabaniadi.Location = new Point(141, 31);
+            textBox_veritabaniadi.Name = "textBox_veritabaniadi";
+            textBox_veritabaniadi.Size = new Size(303, 31);
+            textBox_veritabaniadi.TabIndex = 14;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = SystemColors.Control;
+            label2.Location = new Point(12, 31);
+            label2.Name = "label2";
+            label2.Size = new Size(123, 21);
+            label2.TabIndex = 13;
+            label2.Text = "Veritabanı Adı";
+            // 
+            // button_baglantibaslat
+            // 
+            button_baglantibaslat.Location = new Point(16, 269);
+            button_baglantibaslat.Name = "button_baglantibaslat";
+            button_baglantibaslat.Size = new Size(428, 60);
+            button_baglantibaslat.TabIndex = 11;
+            button_baglantibaslat.Text = "Bağlantı Kur";
+            button_baglantibaslat.UseVisualStyleBackColor = true;
+            button_baglantibaslat.Click += button_baglantibaslat_Click;
+            // 
+            // timer_sayac
+            // 
+            timer_sayac.Enabled = true;
+            timer_sayac.Interval = 20;
+            timer_sayac.Tick += timer_sayac_Tick;
+            // 
+            // linkLabel1
+            // 
+            linkLabel1.ActiveLinkColor = Color.SeaGreen;
+            linkLabel1.AutoSize = true;
+            linkLabel1.LinkColor = Color.Gray;
+            linkLabel1.Location = new Point(322, 584);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(150, 21);
+            linkLabel1.TabIndex = 11;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "yazilimturkiye.com";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(484, 611);
+            Controls.Add(linkLabel1);
             Controls.Add(groupBox_veritabanibaglanti);
             Controls.Add(groupBox_veritabanituru);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(button_hakkinda);
             Controls.Add(progressBar_durum);
             Controls.Add(label_versiyon);
@@ -301,11 +298,12 @@
             Controls.Add(label_baslik);
             Controls.Add(label_arkaplan);
             Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             MaximizeBox = false;
             Name = "Form1";
-            StartPosition = FormStartPosition.WindowsDefaultBounds;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "DBConnector";
+            Load += Form1_Load;
             groupBox_veritabanituru.ResumeLayout(false);
             groupBox_veritabanituru.PerformLayout();
             groupBox_veritabanibaglanti.ResumeLayout(false);
@@ -322,9 +320,6 @@
         private Label label_versiyon;
         private ProgressBar progressBar_durum;
         private Button button_hakkinda;
-        private Button button1;
-        private Button button2;
-        private Button button3;
         private GroupBox groupBox_veritabanituru;
         private GroupBox groupBox_veritabanibaglanti;
         private Button button_baglantibaslat;
@@ -340,5 +335,7 @@
         private TextBox textBox_sunucu;
         private TextBox textBox_kullaniciadi;
         private Label label5;
+        private System.Windows.Forms.Timer timer_sayac;
+        private LinkLabel linkLabel1;
     }
 }

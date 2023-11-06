@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yazilimturk\\source\\repos\\DBConnector\\DBConnector.csproj": {}
+    "C:\\Users\\Yılmaz Mert Çayır\\source\\repos\\DBConnector\\DBConnector.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yazilimturk\\source\\repos\\DBConnector\\DBConnector.csproj": {
+    "C:\\Users\\Yılmaz Mert Çayır\\source\\repos\\DBConnector\\DBConnector.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yazilimturk\\source\\repos\\DBConnector\\DBConnector.csproj",
+        "projectUniqueName": "C:\\Users\\Yılmaz Mert Çayır\\source\\repos\\DBConnector\\DBConnector.csproj",
         "projectName": "DBConnector",
-        "projectPath": "C:\\Users\\yazilimturk\\source\\repos\\DBConnector\\DBConnector.csproj",
-        "packagesPath": "C:\\Users\\yazilimturk\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yazilimturk\\source\\repos\\DBConnector\\obj\\",
+        "projectPath": "C:\\Users\\Yılmaz Mert Çayır\\source\\repos\\DBConnector\\DBConnector.csproj",
+        "packagesPath": "C:\\Users\\Yılmaz Mert Çayır\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Yılmaz Mert Çayır\\source\\repos\\DBConnector\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\yazilimturk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yılmaz Mert Çayır\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,6 +45,16 @@
       "frameworks": {
         "net7.0-windows7.0": {
           "targetAlias": "net7.0-windows",
+          "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[7.0.6, )"
+            },
+            "Oracle.ManagedDataAccess": {
+              "target": "Package",
+              "version": "[21.12.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

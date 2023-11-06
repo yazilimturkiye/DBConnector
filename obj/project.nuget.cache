@@ -1,8 +1,26 @@
 {
   "version": 2,
-  "dgSpecHash": "Ax4akv5kf8qNoq/ywyHn1OzfDFvrMQEirjQSjCLPCUQCLrdn1Gk9lC1BvmU5fIy40XFLOC35UbgDZcZ0KPIIAA==",
+  "dgSpecHash": "aE4jXVJmtoanI75gfSC4oRKTzoQA28AVWadZVg/KR5QCV5M4gWdqFT+p7kxDJAC7CoaKnHWxJBshPKE/aXLjfQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yazilimturk\\source\\repos\\DBConnector\\DBConnector.csproj",
-  "expectedPackageFiles": [],
-  "logs": []
+  "projectFilePath": "C:\\Users\\Yılmaz Mert Çayır\\source\\repos\\DBConnector\\DBConnector.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Yılmaz Mert Çayır\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Yılmaz Mert Çayır\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512",
+    "C:\\Users\\Yılmaz Mert Çayır\\.nuget\\packages\\oracle.manageddataaccess\\21.12.0\\oracle.manageddataaccess.21.12.0.nupkg.sha512",
+    "C:\\Users\\Yılmaz Mert Çayır\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\Yılmaz Mert Çayır\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
+    "C:\\Users\\Yılmaz Mert Çayır\\.nuget\\packages\\system.text.json\\6.0.1\\system.text.json.6.0.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "'Oracle.ManagedDataAccess 21.12.0' paketi, proje hedef çerçevesi 'net7.0-windows7.0' yerine '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' kullanılarak geri yüklendi. Bu paket projenizle tamamen uyumlu olmayabilir.",
+      "libraryId": "Oracle.ManagedDataAccess",
+      "targetGraphs": [
+        "net7.0-windows7.0"
+      ]
+    }
+  ]
 }
