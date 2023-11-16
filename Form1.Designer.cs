@@ -172,6 +172,7 @@
             checkBox_sifregoster.TabIndex = 22;
             checkBox_sifregoster.Text = "Şifreyi Göster";
             checkBox_sifregoster.UseVisualStyleBackColor = true;
+            checkBox_sifregoster.CheckedChanged += checkBox_sifregoster_CheckedChanged;
             // 
             // textBox_sifre
             // 
@@ -189,6 +190,7 @@
             textBox_port.Name = "textBox_port";
             textBox_port.Size = new Size(81, 31);
             textBox_port.TabIndex = 20;
+            textBox_port.KeyPress += textBox_port_KeyPress;
             // 
             // textBox_sunucu
             // 
