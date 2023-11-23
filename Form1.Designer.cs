@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             label_arkaplan = new Label();
             label_baslik = new Label();
             label_altbaslik = new Label();
             label_versiyon = new Label();
             progressBar_durum = new ProgressBar();
             button_hakkinda = new Button();
+            ımageList1 = new ImageList(components);
             groupBox_veritabanituru = new GroupBox();
             comboBox1_veritabanituru = new ComboBox();
             label1 = new Label();
@@ -106,11 +108,21 @@
             // 
             // button_hakkinda
             // 
+            button_hakkinda.ImageIndex = 0;
+            button_hakkinda.ImageList = ımageList1;
             button_hakkinda.Location = new Point(19, 74);
             button_hakkinda.Name = "button_hakkinda";
             button_hakkinda.Size = new Size(50, 50);
             button_hakkinda.TabIndex = 5;
             button_hakkinda.UseVisualStyleBackColor = true;
+            button_hakkinda.Click += button_hakkinda_Click;
+            // 
+            // ımageList1
+            // 
+            ımageList1.ColorDepth = ColorDepth.Depth32Bit;
+            ımageList1.ImageStream = (ImageListStreamer)resources.GetObject("ımageList1.ImageStream");
+            ımageList1.TransparentColor = Color.Transparent;
+            ımageList1.Images.SetKeyName(0, "ayarlar.png");
             // 
             // groupBox_veritabanituru
             // 
@@ -300,6 +312,7 @@
             Controls.Add(label_baslik);
             Controls.Add(label_arkaplan);
             Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             MaximizeBox = false;
             Name = "Form1";
@@ -339,5 +352,6 @@
         private Label label5;
         private System.Windows.Forms.Timer timer_sayac;
         private LinkLabel linkLabel1;
+        private ImageList ımageList1;
     }
 }

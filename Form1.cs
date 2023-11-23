@@ -4,6 +4,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Npgsql; // PostgreSQL Connection
 using Microsoft.Data.SqlClient; // Microsoft SQL Server Connection
 using MySql.Data.MySqlClient; // MySQL Connection
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace DBConnector // 06.11.2023 yazilimturkiye.com
 {
@@ -22,7 +23,10 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
             string port = textBox_port.Text;
             string sifre = textBox_sifre.Text;
 
-            string connectionString_Oracle = $"User Id={kullaniciadi};Password={sifre};Data Source={veritabaniadi};";
+            string connectionString_Oracle = $"Data Source={sunucu};User Id={kullaniciadi};Password={sifre};";
+            //string connectionString_Oracle = $"Data Source={sunucu};User Id={kullaniciadi};Password={sifre};Integrated Security=no;";
+            //string connectionString_Oracle = $"User Id={kullaniciadi};Password={sifre};Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={sunucu})(PORT={port}))(CONNECT_DATA=(SERVICE_NAME={veritabaniadi})));";
+            //string connectionString_Oracle = $"User Id={kullaniciadi};Password={sifre};Data Source={veritabaniadi};";
             OracleConnection connection = new OracleConnection(connectionString_Oracle);
 
             try
@@ -221,6 +225,11 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
         private void textBox_port_KeyPress(object sender, KeyPressEventArgs e) // textBox_port sadece sayý giriþi yapma
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        private void button_hakkinda_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("DBConnector Veritabaný baðlantý kontrolcüsü, Windows iþletim sistemleri üzerinden uygulama içerisinde ekle olan veritabanlarýna baðlantý kontroü yapmanýza olanak saðlayan .NET ortamýnda geliþtirilmiþ açýk kaynak bir yazýlýmdýr. Destek ve daha fazla bilgi saihibi olmak için web sitemizi ziyaret edebilirsiniz. www.yazilimturkiye.com", "DBConnector Ücretsiz Sürümü Hakkýnda", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
