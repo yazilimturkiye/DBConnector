@@ -84,7 +84,7 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
             string port = textBox_port.Text;
             string sifre = textBox_sifre.Text;
 
-            string connectionString = $"Data Source={sunucu};Initial Catalog={veritabaniadi};User Id={kullaniciadi};Password={sifre};";
+            string connectionString = $"Data Source={sunucu},{port};Initial Catalog={veritabaniadi};User Id={kullaniciadi};Password={sifre};";
             SqlConnection connection = new SqlConnection(connectionString);
 
             try
@@ -109,7 +109,7 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
             string port = textBox_port.Text;
             string sifre = textBox_sifre.Text;
 
-            string connectionString = $"Server={sunucu};Database={veritabaniadi};User ID={kullaniciadi};Password={sifre};";
+            string connectionString = $"Server={sunucu};Port={port};Database={veritabaniadi};User ID={kullaniciadi};Password={sifre};";
             MySqlConnection connection = new MySqlConnection(connectionString);
 
             try
@@ -134,13 +134,6 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
             comboBox1_veritabanituru.Items.Add("PostgreSQL");           // SelectedIndex = 3
             comboBox1_veritabanituru.Items.Add("MySQL");                // SelectedIndex = 4
             comboBox1_veritabanituru.SelectedIndex = 0;
-
-            string veritabaniadi = textBox_veritabaniadi.Text;
-            string kullaniciadi = textBox_kullaniciadi.Text;
-            string sunucu = textBox_sunucu.Text;
-            string port = textBox_port.Text;
-            string sifre = textBox_sifre.Text;
-
             timer_sayac.Stop();
         }
 
@@ -232,8 +225,7 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
 
         private void button_hakkinda_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("DBConnector Veritabanı bağlantı kontrolcüsü, Windows işletim sistemleri üzerinden uygulama içerisinde ekle olan veritabanlarına bağlantı kontroü yapmanıza olanak saðlayan .NET ortamında geliştirilmiş açık kaynak bir yazılımdır. Destek ve daha fazla bilgi saihibi olmak için web sitemizi ziyaret edebilirsiniz. www.yazilimturkiye.com", "DBConnector Ücretsiz Sürümü Hakkında", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            MessageBox.Show("DBConnector Veritabanı bağlantı kontrolcüsü, Windows işletim sistemleri üzerinden uygulama içerisinde ekle olan veritabanlarına bağlantı kontroü yapmanıza olanak sağlayan .NET ortamında geliştirilmiş açık kaynak bir yazılımdır. Destek ve daha fazla bilgi saihibi olmak için web sitemizi ziyaret edebilirsiniz. www.yazilimturkiye.com", "DBConnector Ücretsiz Sürümü Hakkında", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
