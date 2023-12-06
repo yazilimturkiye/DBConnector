@@ -141,11 +141,28 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
         {
             if (comboBox1_veritabanituru.SelectedIndex == 0) // Eğer "seciniz" secili ise groupbox'u kilitle
             {
+                textBox_port.Clear();
                 groupBox_veritabanibaglanti.Enabled = false;
             }
-            else // degilse ac
+            else if (comboBox1_veritabanituru.SelectedIndex == 1) // Oracle Connection
             {
                 groupBox_veritabanibaglanti.Enabled = true;
+                textBox_port.Text = "1521";
+            }
+            else if (comboBox1_veritabanituru.SelectedIndex == 2) // Microsoft SQL Server
+            {
+                groupBox_veritabanibaglanti.Enabled = true;
+                textBox_port.Text = "1433";
+            }
+            else if (comboBox1_veritabanituru.SelectedIndex == 3) // PostgreSQL
+            {
+                groupBox_veritabanibaglanti.Enabled = true;
+                textBox_port.Text = "5432";
+            }
+            else if (comboBox1_veritabanituru.SelectedIndex == 4) // MySQL
+            {
+                groupBox_veritabanibaglanti.Enabled = true;
+                textBox_port.Text = "3306";
             }
         }
 
