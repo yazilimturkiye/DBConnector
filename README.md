@@ -15,6 +15,7 @@ Uygulama açıldıktan sonra, öncelikle veritananı türü seçilir, ardından 
 - PostgreSQL
 - Microsoft SQL Server
 - MySQL
+  
 DBConnector şimdilik bu veritabanı türlerine bağlantı kurabilir.
 
 ### İndir
