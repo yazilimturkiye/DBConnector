@@ -161,7 +161,6 @@ C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\K4os.Comp
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\K4os.Hash.xxHash.xml
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Bcl.HashCode.xml
-C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Data.SqlClient.pdb
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Data.SqlClient.xml
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
@@ -212,3 +211,11 @@ C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\obj\Debug\DBConnect
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\obj\Debug\DBConnec.BC93FA37.Up2Date
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\obj\Debug\DBConnector.exe
 C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\obj\Debug\DBConnector.pdb
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Bcl.TimeProvider.dll
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\System.ClientModel.dll
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\System.Formats.Asn1.dll
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\System.IO.FileSystem.AccessControl.dll
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\Microsoft.Bcl.TimeProvider.xml
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\System.ClientModel.xml
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\System.Formats.Asn1.xml
+C:\Users\ylmzmrtcyr\Documents\GitHub\DBConnector\DBConnector\bin\Debug\System.IO.FileSystem.AccessControl.xml

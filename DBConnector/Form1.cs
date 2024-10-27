@@ -10,8 +10,8 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client; // Oracle Connection
 using Npgsql; // PostgreSQL Connection
 using Microsoft.Data.SqlClient; // Microsoft SQL Server Connection
-using MySql.Data.MySqlClient;
-using System.Diagnostics; // MySQL Connection
+using MySql.Data.MySqlClient; // MySQL Connection
+using System.Diagnostics;
 
 namespace DBConnector // 06.11.2023 yazilimturkiye.com
 {
@@ -23,57 +23,64 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
         }
         public void Oracle_Connection_Metot() // Oracle Connection
         {
-            string veritabaniadi = textBox_veritabaniadi.Text;
-            string kullaniciadi = textBox_kullaniciadi.Text;
-            string sunucu = textBox_sunucu.Text;
-            string port = textBox_port.Text;
-            string sifre = textBox_sifre.Text;
-
-            //string connectionString_Oracle = @"DATA SOURCE = 10.1.5.19:1521/ORCL; USER ID = TMAGNKUR_AHMET; PASSWORD=Test12345";
-            //string connectionString_Oracle = $"Data Source={sunucu};User Id={kullaniciadi};Password={sifre};";
-            //string connectionString_Oracle = $"Data Source={sunucu};User Id={kullaniciadi};Password={sifre};Integrated Security=no;";
-            string connectionString_Oracle = $"Connection Timeout = 10; Max Pool Size = 150;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={sunucu})(PORT={port}))(CONNECT_DATA=(SERVICE_NAME={veritabaniadi})));User ID={kullaniciadi};Password={sifre};";
-            //string connectionString_Oracle = $"user id = {kullaniciadi}; password = {sifre}; Connection Timeout = 10; Max Pool Size = 150; data source = (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = {sunucu})(PORT = {port}))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = {veritabaniadi})))";
-            //string connectionString_Oracle = $"Data Source=(DESCRIPTION =" + $"(ADDRESS = (PROTOCOL = TCP)(HOST = {sunucu})(PORT = {port}))" + $"(CONNECT_DATA =" + $"(SERVER = DEDICATED)" + $"(SERVICE_NAME = {veritabaniadi})));" + $"User Id={kullaniciadi};Password={sifre};";
-            //string connectionString_Oracle = $"User Id={kullaniciadi};Password={sifre};Data Source={veritabaniadi};";
-            OracleConnection connection = new OracleConnection(connectionString_Oracle);
-            try
+            if (string.IsNullOrWhiteSpace(textBox_veritabaniadi.Text) || string.IsNullOrWhiteSpace(textBox_kullaniciadi.Text) || string.IsNullOrWhiteSpace(textBox_sunucu.Text) || string.IsNullOrWhiteSpace(textBox_port.Text) || string.IsNullOrWhiteSpace(textBox_sifre.Text))
             {
-                connection.Open();
-                MessageBox.Show("Veritabanı Bağlantısı Başarıyla Sağlandı!", "Bağlantı Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please fill all blank spaces!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Veritabanından Gelen Hata Detayı : " + ex.Message, "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                connection.Close();
+                string veritabaniadi = textBox_veritabaniadi.Text;
+                string kullaniciadi = textBox_kullaniciadi.Text;
+                string sunucu = textBox_sunucu.Text;
+                string port = textBox_port.Text;
+                string sifre = textBox_sifre.Text;
+                string connectionString_Oracle = $"Connection Timeout = 10; Max Pool Size = 150;Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={sunucu})(PORT={port}))(CONNECT_DATA=(SERVICE_NAME={veritabaniadi})));User ID={kullaniciadi};Password={sifre};";
+                OracleConnection connection = new OracleConnection(connectionString_Oracle);
+                try
+                {
+                    connection.Open();
+                    MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Details from Database : " + ex.Message, "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
         public void Postgre_Connection_Metot()  // Postgre Connection
         {
-            string veritabaniadi = textBox_veritabaniadi.Text;
-            string kullaniciadi = textBox_kullaniciadi.Text;
-            string sunucu = textBox_sunucu.Text;
-            string port = textBox_port.Text;
-            string sifre = textBox_sifre.Text;
-
-            string connectionString = $"Host={sunucu};Port={port};Username={kullaniciadi};Password={sifre};Database={veritabaniadi};";
-            NpgsqlConnection connection = new NpgsqlConnection(connectionString);
-
-            try
+            if (string.IsNullOrWhiteSpace(textBox_veritabaniadi.Text) || string.IsNullOrWhiteSpace(textBox_kullaniciadi.Text) || string.IsNullOrWhiteSpace(textBox_sunucu.Text) || string.IsNullOrWhiteSpace(textBox_port.Text) || string.IsNullOrWhiteSpace(textBox_sifre.Text))
             {
-                connection.Open();
-                MessageBox.Show("Veritabanı Bağlantısı Başarıyla Sağlandı!", "Bağlantı Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please fill all blank spaces!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Veritabanından Gelen Hata Detayı : " + ex.Message, "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                connection.Close();
+                string veritabaniadi = textBox_veritabaniadi.Text;
+                string kullaniciadi = textBox_kullaniciadi.Text;
+                string sunucu = textBox_sunucu.Text;
+                string port = textBox_port.Text;
+                string sifre = textBox_sifre.Text;
+
+                string connectionString = $"Host={sunucu};Port={port};Username={kullaniciadi};Password={sifre};Database={veritabaniadi};";
+                NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+                try
+                {
+                    connection.Open();
+                    MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error Details from Database : " + ex.Message, "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
         }
         public void MicrosoftSQLServer_Connection_Metot() // MicrosoftSQL Connection
@@ -90,18 +97,18 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
             try
             {
                 connection.Open();
-                MessageBox.Show("Veritabanı Bağlantısı Başarıyla Sağlandı!", "Bağlantı Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Veritabanından Gelen Hata Detayı : " + ex.Message, "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error Details from Database : " + ex.Message, "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 connection.Close();
             }
         }
-        public void MySQL_Connection_Metot()
+        public void MySQL_Connection_Metot() // MySQL Connection
         {
             string veritabaniadi = textBox_veritabaniadi.Text;
             string kullaniciadi = textBox_kullaniciadi.Text;
@@ -115,11 +122,11 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
             try
             {
                 connection.Open();
-                MessageBox.Show("Veritabanı Bağlantısı Başarıyla Sağlandı!", "Bağlantı Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Veritabanından Gelen Hata Detayı : " + ex.Message, "Bağlantı Hatası", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error Details from Database : " + ex.Message, "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -128,7 +135,7 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            comboBox1_veritabanituru.Items.Add("Seçiniz...");           // SelectedIndex = 0
+            comboBox1_veritabanituru.Items.Add("Select...");           // SelectedIndex = 0
             comboBox1_veritabanituru.Items.Add("Oracle Database");      // SelectedIndex = 1
             comboBox1_veritabanituru.Items.Add("Microsoft SQL Server"); // SelectedIndex = 2
             comboBox1_veritabanituru.Items.Add("PostgreSQL");           // SelectedIndex = 3
@@ -144,7 +151,7 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
                 textBox_port.Clear();
                 groupBox_veritabanibaglanti.Enabled = false;
             }
-            else if (comboBox1_veritabanituru.SelectedIndex == 1) // Oracle Connection
+            else if (comboBox1_veritabanituru.SelectedIndex == 1) // Oracle
             {
                 groupBox_veritabanibaglanti.Enabled = true;
                 textBox_port.Text = "1521";
@@ -169,7 +176,7 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
         private void button_baglantibaslat_Click(object sender, EventArgs e)
         {
             progressBar_durum.Value = 0;
-            button_baglantibaslat.Text = "Lütfen Bekleyiniz...";
+            button_baglantibaslat.Text = "Please Wait...";
             if (comboBox1_veritabanituru.SelectedIndex == 1) // Oracle Connection
             {
                 groupBox_veritabanibaglanti.Enabled = false;
@@ -207,20 +214,12 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
                 timer_sayac.Stop();
                 groupBox_veritabanituru.Enabled = true;
                 groupBox_veritabanibaglanti.Enabled = true;
-                button_baglantibaslat.Text = "Bağlantı Kur";
+                button_baglantibaslat.Text = "Connect Database";
             }
             else
             {
                 progressBar_durum.Value++;
             }
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process sayfa_ac = new Process();
-            sayfa_ac.StartInfo.UseShellExecute = true;
-            sayfa_ac.StartInfo.FileName = "https://www.yazilimturkiye.com/";
-            sayfa_ac.Start();
         }
 
         private void checkBox_sifregoster_CheckedChanged(object sender, EventArgs e)
@@ -242,7 +241,24 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
 
         private void button_hakkinda_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("DBConnector Veritabanı bağlantı kontrolcüsü, Windows işletim sistemleri üzerinden uygulama içerisinde ekle olan veritabanlarına bağlantı kontroü yapmanıza olanak sağlayan .NET ortamında geliştirilmiş açık kaynak bir yazılımdır. Destek ve daha fazla bilgi saihibi olmak için web sitemizi ziyaret edebilirsiniz. www.yazilimturkiye.com", "DBConnector Ücretsiz Sürümü Hakkında", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (panel_connector.Visible == true)
+            {
+                panel_settings.Visible = true;
+                panel_connector.Visible = false;
+            }
+            else if (panel_settings.Visible == true)
+            {
+                panel_settings.Visible = false;
+                panel_connector.Visible = true;
+            }
+        }
+
+        private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process sayfa_ac = new Process();
+            sayfa_ac.StartInfo.UseShellExecute = true;
+            sayfa_ac.StartInfo.FileName = "https://www.yazilimturkiye.com/";
+            sayfa_ac.Start();
         }
     }
 }
