@@ -34,21 +34,21 @@
           "System.IdentityModel.Tokens.Jwt": "8.1.2",
           "System.Management": "8.0.0",
           "ZstdSharp.Port": "0.8.1",
-          "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.22000.45"
+          "runtimepack.Microsoft.Windows.SDK.NET.Ref": "10.0.22000.57"
         },
         "runtime": {
           "DBConnector.dll": {}
         }
       },
-      "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22000.45": {
+      "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22000.57": {
         "runtime": {
           "Microsoft.Windows.SDK.NET.dll": {
             "assemblyVersion": "10.0.22000.38",
-            "fileVersion": "10.0.22000.43"
+            "fileVersion": "10.0.22000.55"
           },
           "WinRT.Runtime.dll": {
-            "assemblyVersion": "2.1.0.0",
-            "fileVersion": "2.1.2.47512"
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.48161"
           }
         }
       },
@@ -678,7 +678,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22000.45": {
+    "runtimepack.Microsoft.Windows.SDK.NET.Ref/10.0.22000.57": {
       "type": "runtimepack",
       "serviceable": false,
       "sha512": ""

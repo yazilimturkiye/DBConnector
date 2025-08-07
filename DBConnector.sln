@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34316.72
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBConnector", "DBConnector\DBConnector.csproj", "{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DBConnector_Setup", "DBConnector_Setup\DBConnector_Setup.vdproj", "{0062C158-740E-4A35-82EC-756762A9C311}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DBConnector_Setup_v3.0", "DBConnector_Setup_v3.0\DBConnector_Setup_v3.0.vdproj", "{9A131D2D-CB3B-0F7D-E06E-8C59939725B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0062C158-740E-4A35-82EC-756762A9C311}.Debug|Any CPU.ActiveCfg = Debug
-		{0062C158-740E-4A35-82EC-756762A9C311}.Release|Any CPU.ActiveCfg = Release
+		{9A131D2D-CB3B-0F7D-E06E-8C59939725B3}.Debug|Any CPU.ActiveCfg = Debug
+		{9A131D2D-CB3B-0F7D-E06E-8C59939725B3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

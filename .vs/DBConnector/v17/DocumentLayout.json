@@ -1,9 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ylmzmrtcyr\\Documents\\GitHub\\DBConnector\\",
+  "WorkspaceRootPath": "C:\\Users\\HOME-PC\\Documents\\GitHub\\DBConnector\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}|DBConnector\\DBConnector.csproj|c:\\users\\ylmzmrtcyr\\documents\\github\\dbconnector\\dbconnector\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}|DBConnector\\DBConnector.csproj|c:\\users\\home-pc\\documents\\github\\dbconnector\\dbconnector\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}|DBConnector\\DBConnector.csproj|solutionrelative:dbconnector\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}|DBConnector\\DBConnector.csproj|c:\\users\\home-pc\\documents\\github\\dbconnector\\dbconnector\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{06E12A3C-F1C5-40B7-8146-27C772F0CEB4}|DBConnector\\DBConnector.csproj|solutionrelative:dbconnector\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -23,12 +27,24 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\ylmzmrtcyr\\Documents\\GitHub\\DBConnector\\DBConnector\\Form1.cs",
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\HOME-PC\\Documents\\GitHub\\DBConnector\\DBConnector\\Form1.cs",
               "RelativeDocumentMoniker": "DBConnector\\Form1.cs",
-              "ToolTip": "C:\\Users\\ylmzmrtcyr\\Documents\\GitHub\\DBConnector\\DBConnector\\Form1.cs",
+              "ToolTip": "C:\\Users\\HOME-PC\\Documents\\GitHub\\DBConnector\\DBConnector\\Form1.cs [Design]",
+              "RelativeToolTip": "DBConnector\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-07T15:49:15.03Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\HOME-PC\\Documents\\GitHub\\DBConnector\\DBConnector\\Form1.cs",
+              "RelativeDocumentMoniker": "DBConnector\\Form1.cs",
+              "ToolTip": "C:\\Users\\HOME-PC\\Documents\\GitHub\\DBConnector\\DBConnector\\Form1.cs",
               "RelativeToolTip": "DBConnector\\Form1.cs",
-              "ViewState": "AgIAAOwAAAAAAAAAAAAswN8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEEBAAAAAAAAAAAgwF0BAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-18T19:03:04.362Z",
               "EditorCaption": ""
