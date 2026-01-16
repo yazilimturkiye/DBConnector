@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            label_arkaplan = new System.Windows.Forms.Label();
             label_baslik = new System.Windows.Forms.Label();
             label_altbaslik = new System.Windows.Forms.Label();
             button_hakkinda = new System.Windows.Forms.Button();
@@ -53,28 +52,21 @@
             label2 = new System.Windows.Forms.Label();
             panel_connector = new System.Windows.Forms.Panel();
             panel_settings = new System.Windows.Forms.Panel();
-            groupBox1 = new System.Windows.Forms.GroupBox();
-            label6 = new System.Windows.Forms.Label();
+            tabControl1 = new System.Windows.Forms.TabControl();
             RichTextBox_Logs = new System.Windows.Forms.RichTextBox();
+            tabPage1 = new System.Windows.Forms.TabPage();
             groupBox_veritabanituru.SuspendLayout();
             groupBox_veritabanibaglanti.SuspendLayout();
             panel_connector.SuspendLayout();
             panel_settings.SuspendLayout();
-            groupBox1.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
-            // 
-            // label_arkaplan
-            // 
-            label_arkaplan.BackColor = System.Drawing.SystemColors.ControlLight;
-            label_arkaplan.Location = new System.Drawing.Point(0, 0);
-            label_arkaplan.Name = "label_arkaplan";
-            label_arkaplan.Size = new System.Drawing.Size(1054, 73);
-            label_arkaplan.TabIndex = 11;
             // 
             // label_baslik
             // 
             label_baslik.AutoSize = true;
-            label_baslik.BackColor = System.Drawing.SystemColors.ControlLight;
+            label_baslik.BackColor = System.Drawing.SystemColors.Control;
             label_baslik.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
             label_baslik.ForeColor = System.Drawing.Color.SeaGreen;
             label_baslik.Location = new System.Drawing.Point(7, 9);
@@ -86,7 +78,7 @@
             // label_altbaslik
             // 
             label_altbaslik.AutoSize = true;
-            label_altbaslik.BackColor = System.Drawing.SystemColors.ControlLight;
+            label_altbaslik.BackColor = System.Drawing.SystemColors.Control;
             label_altbaslik.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
             label_altbaslik.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
             label_altbaslik.Location = new System.Drawing.Point(8, 36);
@@ -112,9 +104,8 @@
             ımageList1.ImageStream = (System.Windows.Forms.ImageListStreamer)resources.GetObject("ımageList1.ImageStream");
             ımageList1.TransparentColor = System.Drawing.Color.Transparent;
             ımageList1.Images.SetKeyName(0, "ayarlar.png");
-            ımageList1.Images.SetKeyName(1, "connect.png");
-            ımageList1.Images.SetKeyName(2, "logo.png");
-            ımageList1.Images.SetKeyName(3, "cmd.png");
+            ımageList1.Images.SetKeyName(1, "logo.png");
+            ımageList1.Images.SetKeyName(2, "cmd.png");
             // 
             // groupBox_veritabanituru
             // 
@@ -142,9 +133,9 @@
             label1.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
             label1.Location = new System.Drawing.Point(6, 27);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(145, 21);
+            label1.Size = new System.Drawing.Size(130, 21);
             label1.TabIndex = 0;
-            label1.Text = "Database Brands";
+            label1.Text = "Database Type";
             // 
             // groupBox_veritabanibaglanti
             // 
@@ -172,7 +163,7 @@
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
             linkLabel1.LinkColor = System.Drawing.Color.Gray;
-            linkLabel1.Location = new System.Drawing.Point(369, 273);
+            linkLabel1.Location = new System.Drawing.Point(360, 273);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new System.Drawing.Size(126, 17);
             linkLabel1.TabIndex = 10;
@@ -185,7 +176,6 @@
             button_baglantibaslat.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
             button_baglantibaslat.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
             button_baglantibaslat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            button_baglantibaslat.ImageIndex = 1;
             button_baglantibaslat.ImageList = ımageList1;
             button_baglantibaslat.Location = new System.Drawing.Point(157, 211);
             button_baglantibaslat.Name = "button_baglantibaslat";
@@ -198,11 +188,11 @@
             // checkBox_sifregoster
             // 
             checkBox_sifregoster.AutoSize = true;
-            checkBox_sifregoster.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            checkBox_sifregoster.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
             checkBox_sifregoster.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
             checkBox_sifregoster.Location = new System.Drawing.Point(157, 169);
             checkBox_sifregoster.Name = "checkBox_sifregoster";
-            checkBox_sifregoster.Size = new System.Drawing.Size(142, 24);
+            checkBox_sifregoster.Size = new System.Drawing.Size(127, 21);
             checkBox_sifregoster.TabIndex = 6;
             checkBox_sifregoster.Text = "Show Password";
             checkBox_sifregoster.UseVisualStyleBackColor = true;
@@ -301,41 +291,41 @@
             // 
             // panel_settings
             // 
-            panel_settings.Controls.Add(groupBox1);
+            panel_settings.Controls.Add(tabControl1);
             panel_settings.Location = new System.Drawing.Point(528, 73);
             panel_settings.Name = "panel_settings";
             panel_settings.Size = new System.Drawing.Size(526, 385);
             panel_settings.TabIndex = 15;
             // 
-            // groupBox1
+            // tabControl1
             // 
-            groupBox1.Controls.Add(label6);
-            groupBox1.Controls.Add(RichTextBox_Logs);
-            groupBox1.Location = new System.Drawing.Point(14, 4);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new System.Drawing.Size(497, 368);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.ForeColor = System.Drawing.Color.FromArgb(64, 64, 64);
-            label6.Location = new System.Drawing.Point(160, 26);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(185, 21);
-            label6.TabIndex = 9;
-            label6.Text = "Connection Result Log";
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Location = new System.Drawing.Point(14, 13);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new System.Drawing.Size(497, 359);
+            tabControl1.TabIndex = 10;
             // 
             // RichTextBox_Logs
             // 
             RichTextBox_Logs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             RichTextBox_Logs.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            RichTextBox_Logs.Location = new System.Drawing.Point(17, 68);
+            RichTextBox_Logs.Location = new System.Drawing.Point(6, 6);
             RichTextBox_Logs.Name = "RichTextBox_Logs";
-            RichTextBox_Logs.Size = new System.Drawing.Size(467, 283);
+            RichTextBox_Logs.Size = new System.Drawing.Size(477, 313);
             RichTextBox_Logs.TabIndex = 8;
             RichTextBox_Logs.Text = "";
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(RichTextBox_Logs);
+            tabPage1.Location = new System.Drawing.Point(4, 30);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            tabPage1.Size = new System.Drawing.Size(489, 325);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Connection Result";
+            tabPage1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -345,7 +335,6 @@
             Controls.Add(button_hakkinda);
             Controls.Add(label_altbaslik);
             Controls.Add(label_baslik);
-            Controls.Add(label_arkaplan);
             Controls.Add(panel_connector);
             Controls.Add(panel_settings);
             Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
@@ -363,15 +352,13 @@
             groupBox_veritabanibaglanti.PerformLayout();
             panel_connector.ResumeLayout(false);
             panel_settings.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label_arkaplan;
         private System.Windows.Forms.Label label_baslik;
         private System.Windows.Forms.Label label_altbaslik;
         private System.Windows.Forms.Button button_hakkinda;
@@ -393,10 +380,10 @@
         private System.Windows.Forms.TextBox textBox_kullaniciadi;
         private System.Windows.Forms.Panel panel_connector;
         private System.Windows.Forms.Panel panel_settings;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.RichTextBox RichTextBox_Logs;
-        private System.Windows.Forms.Label label6;
     }
 }
 

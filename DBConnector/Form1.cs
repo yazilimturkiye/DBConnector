@@ -17,13 +17,97 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
 {
     public partial class Form1 : Form
     {
+
+        private static readonly Dictionary<string, string[]> CommonErrorHints =
+            new Dictionary<string, string[]>(StringComparer.OrdinalIgnoreCase)
+        {
+    {
+        "TIMEOUT",
+        new string[]
+        {
+            "- Firewall blocked.",
+            "- Server not reachable.",
+            "- Wrong port.",
+            "- VPN / Network latency."
+        }
+    },
+    {
+        "CONNECTION REFUSED",
+        new string[]
+        {
+            "- Database service is not running.",
+            "- Wrong port.",
+            "- Firewall blocked."
+        }
+    },
+    {
+        "LOGIN FAILED",
+        new string[]
+        {
+            "- Wrong username.",
+            "- Wrong password.",
+            "- Authentication method mismatch."
+        }
+    },
+    {
+        "PASSWORD AUTHENTICATION FAILED",
+        new string[]
+        {
+            "- Wrong username or password.",
+            "- PostgreSQL pg_hba.conf restriction."
+        }
+    },
+    {
+        "HOST OR OBJECT DOES NOT EXIST",
+        new string[]
+        {
+            "- Wrong server address.",
+            "- DNS issue.",
+            "- Server is unreachable."
+        }
+    },
+    {
+        "NO ROUTE TO HOST",
+        new string[]
+        {
+            "- Network routing issue.",
+            "- Server IP is wrong.",
+            "- Firewall blocked."
+        }
+    },
+    {
+        "NO SUCH HOST IS KNOWN",
+        new string[]
+        {
+        "- Server hostname is wrong",
+        "- DNS resolution failed",
+        "- Hosts file misconfiguration",
+        "- VPN / Network issue"
+        }
+    },
+    {
+        "UNABLE TO CONNECT TO ANY OF THE SPECIFIED MYSQL HOSTS",
+        new string[]
+        {
+        "- MySQL service is not running",
+        "- Server address or port is wrong",
+        "- Firewall blocked (3306)",
+        "- Server is not reachable from client",
+        "- MySQL bind-address restriction"
+        }
+    }
+        };
+
+
         public Form1()
         {
             InitializeComponent();
         }
-        public void Oracle_Connection_Metot()
+
+        public async Task Oracle_Connection_Metot() // Oracle Connection Method.
         {
             RichTextBox_Logs.Clear();
+
             string veritabaniadi = textBox_veritabaniadi.Text;
             string kullaniciadi = textBox_kullaniciadi.Text;
             string sunucu = textBox_sunucu.Text;
@@ -32,191 +116,251 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
 
             string connectionString_Oracle =
                 $"Connection Timeout=10;Max Pool Size=150;" +
-                $"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={sunucu})(PORT={port}))(CONNECT_DATA=(SERVICE_NAME={veritabaniadi})));User ID={kullaniciadi};Password={sifre};";
+                $"Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)" +
+                $"(HOST={sunucu})(PORT={port}))" +
+                $"(CONNECT_DATA=(SERVICE_NAME={veritabaniadi})));" +
+                $"User ID={kullaniciadi};Password={sifre};";
 
-            using (OracleConnection connection = new OracleConnection(connectionString_Oracle))
+            Stopwatch sw = Stopwatch.StartNew();
+            bool success = false;
+            string errorMessage = "";
+
+            try
             {
-                Stopwatch sw = Stopwatch.StartNew();
-                bool success = false;
-                string errorMessage = "";
-
-                try
+                using (var connection = new OracleConnection(connectionString_Oracle))
                 {
-                    connection.Open();
+                    await Task.Run(() => connection.Open());
                     success = true;
-                    MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    success = false;
-                    errorMessage = ex.Message;
-                    MessageBox.Show("Database Connection Failed!", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    sw.Stop();
-                    connection.Close();
-                    ShowConnectionResult(
-                        success,
-                        "Oracle",
-                        sw.Elapsed.TotalSeconds,
-                        errorMessage,
-                        sunucu,
-                        port,
-                        veritabaniadi,
-                        kullaniciadi
-                    );
-                    groupBox_veritabanibaglanti.Enabled = true;
-                    groupBox_veritabanituru.Enabled = true;
+
+                    MessageBox.Show("Database Connection Successful!","Connection Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
+            catch (OracleException ex)
+            {
+                success = false;
+                errorMessage = ex.Message;
+
+                MessageBox.Show("Database Connection Failed!","Connection Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sw.Stop();
+
+                ShowConnectionResult(
+                    success,
+                    "Oracle",
+                    sw.Elapsed.TotalSeconds,
+                    errorMessage,
+                    sunucu,
+                    port,
+                    veritabaniadi,
+                    kullaniciadi
+                );
+
+                groupBox_veritabanibaglanti.Enabled = true;
+                groupBox_veritabanituru.Enabled = true;
+                button_baglantibaslat.Text = "Connect Database";
+            }
         }
-        public void Postgre_Connection_Metot()
+
+        public async Task Postgre_Connection_Metot() // PostgreSQL Connection Method.
         {
             RichTextBox_Logs.Clear();
+
             string veritabaniadi = textBox_veritabaniadi.Text;
             string kullaniciadi = textBox_kullaniciadi.Text;
             string sunucu = textBox_sunucu.Text;
             string port = textBox_port.Text;
             string sifre = textBox_sifre.Text;
 
-            string connectionString = $"Host={sunucu};Port={port};Username={kullaniciadi};Password={sifre};Database={veritabaniadi};";
+            string connectionString =
+                $"Host={sunucu};" +
+                $"Port={port};" +
+                $"Username={kullaniciadi};" +
+                $"Password={sifre};" +
+                $"Database={veritabaniadi};";
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(connectionString))
+            Stopwatch sw = Stopwatch.StartNew();
+            bool success = false;
+            string errorMessage = "";
+
+            try
             {
-                Stopwatch sw = Stopwatch.StartNew();
-                bool success = false;
-                string errorMessage = "";
-
-                try
+                using (var connection = new NpgsqlConnection(connectionString))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     success = true;
-                    MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    success = false;
-                    errorMessage = ex.Message;
-                    MessageBox.Show("Database Connection Failed!", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    sw.Stop();
-                    connection.Close();
-                    ShowConnectionResult(
-                        success,
-                        "PostgreSQL",
-                        sw.Elapsed.TotalSeconds,
-                        errorMessage,
-                        sunucu,
-                        port,
-                        veritabaniadi,
-                        kullaniciadi
-                    );
-                    groupBox_veritabanibaglanti.Enabled = true;
-                    groupBox_veritabanituru.Enabled = true;
+                    MessageBox.Show("Database Connection Successful!","Connection Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
+            catch (PostgresException ex)
+            {
+                success = false;
+                errorMessage = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                success = false;
+                errorMessage = ex.Message;
+            }
+            finally
+            {
+                sw.Stop();
+
+                ShowConnectionResult(
+                    success,
+                    "PostgreSQL",
+                    sw.Elapsed.TotalSeconds,
+                    errorMessage,
+                    sunucu,
+                    port,
+                    veritabaniadi,
+                    kullaniciadi
+                );
+
+                groupBox_veritabanibaglanti.Enabled = true;
+                groupBox_veritabanituru.Enabled = true;
+                button_baglantibaslat.Text = "Connect Database";
+            }
         }
-        public void MicrosoftSQLServer_Connection_Metot()
+
+        public async Task MicrosoftSQLServer_Connection_Metot() // Microsoft SQL Server Connection Method.
         {
             RichTextBox_Logs.Clear();
+
             string veritabaniadi = textBox_veritabaniadi.Text;
             string kullaniciadi = textBox_kullaniciadi.Text;
             string sunucu = textBox_sunucu.Text;
             string port = textBox_port.Text;
             string sifre = textBox_sifre.Text;
 
-            string connectionString = $"Data Source={sunucu},{port};Initial Catalog={veritabaniadi};User Id={kullaniciadi};Password={sifre};";
+            string connectionString =
+                $"Data Source={sunucu},{port};" +
+                $"Initial Catalog={veritabaniadi};" +
+                $"User Id={kullaniciadi};" +
+                $"Password={sifre};";
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            Stopwatch sw = Stopwatch.StartNew();
+            bool success = false;
+            string errorMessage = "";
+
+            try
             {
-                Stopwatch sw = Stopwatch.StartNew();
-                bool success = false;
-                string errorMessage = "";
-
-                try
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    connection.Open();
+                    await connection.OpenAsync();
                     success = true;
-                    MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    success = false;
-                    errorMessage = ex.Message;
-                    MessageBox.Show("Database Connection Failed!", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    sw.Stop();
-                    // connection.Close(); // using bloğu otomatik kapatıyor, gerek yok
-                    ShowConnectionResult(
-                        success,
-                        "Microsoft SQL Server",
-                        sw.Elapsed.TotalSeconds,
-                        errorMessage,
-                        sunucu,
-                        port,
-                        veritabaniadi,
-                        kullaniciadi
-                    );
-                    groupBox_veritabanibaglanti.Enabled = true;
-                    groupBox_veritabanituru.Enabled = true;
+
+                    MessageBox.Show("Database Connection Successful!","Connection Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
+            catch (SqlException ex)
+            {
+                success = false;
+                errorMessage = ex.Message;
+
+                MessageBox.Show("Database Connection Failed!","Connection Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sw.Stop();
+
+                ShowConnectionResult(
+                    success,
+                    "Microsoft SQL Server",
+                    sw.Elapsed.TotalSeconds,
+                    errorMessage,
+                    sunucu,
+                    port,
+                    veritabaniadi,
+                    kullaniciadi
+                );
+
+                groupBox_veritabanibaglanti.Enabled = true;
+                groupBox_veritabanituru.Enabled = true;
+                button_baglantibaslat.Text = "Connect Database";
+            }
         }
-        public void MySQL_Connection_Metot()
+        public async Task MySQL_Connection_Metot() // MySQL Connection Method.
         {
             RichTextBox_Logs.Clear();
+
             string veritabaniadi = textBox_veritabaniadi.Text;
             string kullaniciadi = textBox_kullaniciadi.Text;
             string sunucu = textBox_sunucu.Text;
             string port = textBox_port.Text;
             string sifre = textBox_sifre.Text;
 
-            string connectionString = $"Server={sunucu};Port={port};Database={veritabaniadi};User ID={kullaniciadi};Password={sifre};";
+            string connectionString =
+                $"Server={sunucu};Port={port};Database={veritabaniadi};" +
+                $"User ID={kullaniciadi};Password={sifre};";
 
-            using (var connection = new MySqlConnector.MySqlConnection(connectionString))
+            Stopwatch sw = Stopwatch.StartNew();
+            bool success = false;
+            string errorMessage = "";
+
+            try
             {
-                Stopwatch sw = Stopwatch.StartNew();
-                bool success = false;
-                string errorMessage = "";
-
-                try
+                using (var connection = new MySqlConnection(connectionString))
                 {
-                    connection.Open();
+                    await Task.Run(() => connection.Open());
                     success = true;
-                    MessageBox.Show("Database Connection Successful!", "Connection Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    success = false;
-                    errorMessage = ex.Message;
-                    MessageBox.Show("Database Connection Failed!", "Connection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    sw.Stop();
-                    ShowConnectionResult(
-                        success,
-                        "MySQL",
-                        sw.Elapsed.TotalSeconds,
-                        errorMessage,
-                        sunucu,
-                        port,
-                        veritabaniadi,
-                        kullaniciadi
-                    );
-                    groupBox_veritabanibaglanti.Enabled = true;
-                    groupBox_veritabanituru.Enabled = true;
+
+                    MessageBox.Show("Database Connection Successful!","Connection Successful",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
+            catch (Exception ex)
+            {
+                success = false;
+                errorMessage = ex.Message;
+
+                MessageBox.Show("Database Connection Failed!","Connection Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            finally
+            {
+                sw.Stop();
+
+                ShowConnectionResult(
+                    success,
+                    "MySQL",
+                    sw.Elapsed.TotalSeconds,
+                    errorMessage,
+                    sunucu,
+                    port,
+                    veritabaniadi,
+                    kullaniciadi
+                );
+
+                groupBox_veritabanibaglanti.Enabled = true;
+                groupBox_veritabanituru.Enabled = true;
+                button_baglantibaslat.Text = "Connect Database";
+            }
         }
-        void ShowConnectionResult(bool success, string dbType, double durationSec, string errorMessage = "", string serverIp = "", string port = "", string dbName = "", string username = "")
+        private string BuildGenericErrorExplanation(string errorMessage) //For building generic error explanations.
+        {
+            if (string.IsNullOrWhiteSpace(errorMessage))
+                return string.Empty;
+
+            foreach (var kvp in CommonErrorHints)
+            {
+                if (errorMessage.IndexOf(kvp.Key, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    sb.AppendLine();
+                    sb.AppendLine("Possible reasons:");
+                    foreach (var reason in kvp.Value)
+                        sb.AppendLine(reason);
+
+                    return sb.ToString();
+                }
+            }
+
+            return string.Empty;
+        }
+        void ShowConnectionResult(bool success,string dbType,double durationSec,string errorMessage = "",string serverIp = "",string port = "",string dbName = "",string username = "") //Connection result log method.
         {
             StringBuilder sb = new StringBuilder();
+
             sb.AppendLine($"Timestamp\t\t: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
             sb.AppendLine($"Database Type\t: {dbType}");
             sb.AppendLine($"Database Name\t: {(!string.IsNullOrWhiteSpace(dbName) ? dbName : "N/A")}");
@@ -225,11 +369,20 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
             sb.AppendLine($"Connection Time\t: {durationSec:F3} seconds");
 
             if (success)
+            {
                 sb.AppendLine("Status\t\t: Connection Successful");
+            }
             else
             {
                 sb.AppendLine("Status\t\t: Connection Failed");
                 sb.AppendLine($"Error Message\t: {errorMessage}");
+
+                // ✅ Generic açıklama ekleniyor
+                string genericHint = BuildGenericErrorExplanation(errorMessage);
+                if (!string.IsNullOrWhiteSpace(genericHint))
+                {
+                    sb.AppendLine(genericHint);
+                }
             }
 
             if (RichTextBox_Logs.InvokeRequired)
@@ -282,52 +435,49 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
                     break;
             }
         }
-
-        private void button_baglantibaslat_Click(object sender, EventArgs e)
+        private async void button_baglantibaslat_Click(object sender, EventArgs e)
         {
-            // Eğer herhangi bir textbox boşsa veya port otomatik ve kullanıcı değiştirmemişse engelle
             if (string.IsNullOrWhiteSpace(textBox_veritabaniadi.Text) ||
                 string.IsNullOrWhiteSpace(textBox_kullaniciadi.Text) ||
                 string.IsNullOrWhiteSpace(textBox_sunucu.Text) ||
                 string.IsNullOrWhiteSpace(textBox_port.Text) ||
                 string.IsNullOrWhiteSpace(textBox_sifre.Text))
             {
-                MessageBox.Show("Please fill all blank spaces!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return; // bağlantı metodu çağrılmaz, çıkılır
+                MessageBox.Show("Please fill all blank spaces!","Warning",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                return;
             }
 
             button_baglantibaslat.Text = "Please Wait...";
             groupBox_veritabanibaglanti.Enabled = false;
             groupBox_veritabanituru.Enabled = false;
 
-            if (comboBox1_veritabanituru.SelectedIndex == 1) // Oracle Connection
+            switch (comboBox1_veritabanituru.SelectedIndex)
             {
-                Oracle_Connection_Metot();
-            }
-            else if (comboBox1_veritabanituru.SelectedIndex == 2) // Microsoft SQL Server Connection
-            {
-                MicrosoftSQLServer_Connection_Metot();
-            }
-            else if (comboBox1_veritabanituru.SelectedIndex == 3) // PostgreSQL Connection
-            {
-                Postgre_Connection_Metot();
-            }
-            else if (comboBox1_veritabanituru.SelectedIndex == 4) // MySQL Connection
-            {
-                MySQL_Connection_Metot();
-            }
-            else
-            {
-                MessageBox.Show("Please select a database type!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                groupBox_veritabanibaglanti.Enabled = true;
-                groupBox_veritabanituru.Enabled = true;
-                button_baglantibaslat.Text = "Connect Database";
-                return;
-            }
+                case 1: // Oracle
+                    await Oracle_Connection_Metot();
+                    break;
 
-            button_baglantibaslat.Text = "Connect Database";
+                case 2: // MSSQL
+                    await MicrosoftSQLServer_Connection_Metot();
+                    break;
+
+                case 3: // PostgreSQL
+                    await Postgre_Connection_Metot();
+                    break;
+
+                case 4: // MySQL
+                    await MySQL_Connection_Metot();
+                    break;
+
+                default:
+                    MessageBox.Show("Please select a database type!","Warning",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+
+                    groupBox_veritabanibaglanti.Enabled = true;
+                    groupBox_veritabanituru.Enabled = true;
+                    button_baglantibaslat.Text = "Connect Database";
+                    return;
+            }
         }
-
         private void checkBox_sifregoster_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox_sifregoster.Checked == false)  // checkBox isaretli ise
@@ -352,7 +502,7 @@ namespace DBConnector // 06.11.2023 yazilimturkiye.com
                 "Built on the .NET platform, it helps users for control and connect our databases.\n\n" +
                 "© 2021 yazilimturkiye.com – All rights reserved.\n\n" +
                 "Visit our website for updates and support.\n\n" +
-                "Version: 3.0",
+                "Version: 4.0",
                 "About DBConnector",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
